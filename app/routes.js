@@ -5,7 +5,7 @@ module.exports = function(app, passport) {
  
     // LANDING PAGES ------------------------------------------------------------------------------------------------
 
-    // Signup landing page
+    // Default landing page
     app.get('/', function(req, res) {
         res.render('signup.ejs', { message: req.flash('message') });
     });
@@ -46,16 +46,16 @@ module.exports = function(app, passport) {
 
     // Email signup
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/dashboard', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        successRedirect : '/dashboard',
+        failureRedirect : '/signup', 
         failureFlash : true // allow flash messages
     }));
 
     // Email login
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/dashboard', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect to login
-        failureFlash : true // allow flash messages
+        successRedirect : '/dashboard', 
+        failureRedirect : '/login', 
+        failureFlash : true
     }));
 
 

@@ -15,8 +15,8 @@ module.exports = {
     },
 
     'googleAuth' : {
-        'clientID'      : 'ffffffff',
-        'clientSecret'  : 'ffff',
+        'clientID'      : 'ggggggggggg',
+        'clientSecret'  : 'ggggg',
         'callbackURL'   : 'https://geoip-db.com/auth/google/callback'
     }
 

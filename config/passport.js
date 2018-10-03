@@ -29,11 +29,10 @@ module.exports = function(passport) {
     passport.use('local-signup', new LocalStrategy({
         usernameField : 'email',
         passwordField : 'password',
-        passReqToCallback : true // allows us to pass back the entire request to the callback
+        passReqToCallback : true 
     },
     function(req, email, password, done) {
 
-        // asynchronous
         process.nextTick(function() {
 
             req.checkBody('email','Invalid Email. Please provide a valid email.').notEmpty().isEmail();
@@ -42,7 +41,6 @@ module.exports = function(passport) {
             
             // Check for validation erros
             if(errors){
-                
                 var messages = [];
                 
                 errors.forEach(function(error){
@@ -55,11 +53,11 @@ module.exports = function(passport) {
             //  Whether we're signing up or connecting an account, we'll need to know if the email address is in use.
             User.findOne({ 'local.email' :  email }, function(err, user) {
                 
-                // if there are any errors, return the error
+                // If there are any errors, exit.
                 if (err)
                     return done(err);
 
-                // check to see if there is already a user with that email
+                // Check to see if the email is already taken.
                 if (user) 
                     return done(null, false, req.flash('message', 'This email address is already taken.'));
                 
@@ -99,34 +97,33 @@ module.exports = function(passport) {
     // --- LOGIN
 
     passport.use('local-login', new LocalStrategy({
-        // By default, local strategy uses username and password, we will override with email
         usernameField : 'email',
         passwordField : 'password',
-        passReqToCallback : true // Allows us to pass back the entire request to the callback
+        passReqToCallback : true
     },
-    function(req, email, password, done) { // Callback with email and password from our form
+    function(req, email, password, done) {
 
         User.findOne({ 'local.email' :  email }, function(err, user) {
             
             if (err) 
                 return done(err);
             
-            // User not found
+            // User not found.
             if (!user)
                 return done(null, false, req.flash('message', 'User not found or password mismatch!')); 
 
-            // Wrong password
+            // Wrong password.
             if (!user.validPassword(password))
                 return done(null, false, req.flash('message', 'Oops! User not found or password mismatch!'));
 
-            // All is well, return successful user
+            // Password and email match, return user.
             //return done(null, user, req.flash('message', 'User ' + user.local.fullname + ' successfully logged in.'));
             return done(null, user);
         });
     }));
 
 
-    // --- RESET PASSWORD - TODO, still to be implemented
+    // --- RESET PASSWORD - TODO, implement.
 
     passport.use('reset', function(req, done) { 
 
@@ -135,11 +132,11 @@ module.exports = function(passport) {
             if (err) 
                 return done(err);
             
-            // User not found
+            // User not found.
             if (!user)
                 return done(null, false, req.flash('message', 'Email address not found.')); 
 
-            // All is well, return successful user
+            // Password and email match, return user.
             return done(null, false, req.flash('message', 'If the email you provided exists, we\'ve sent a password reset link to it.'));
         });
     }); 
@@ -151,15 +148,13 @@ module.exports = function(passport) {
     // GOOGLE ----------------------------------------------------------------------------------------------------------------------------------------
 
     passport.use(new GoogleStrategy({
-
         clientID        : configAuth.googleAuth.clientID,
         clientSecret    : configAuth.googleAuth.clientSecret,
         callbackURL     : configAuth.googleAuth.callbackURL,
-        passReqToCallback : true // Allows us to pass in the req from our route (lets us check if a user is logged in or not)
+        passReqToCallback : true
     },
     function(req, token, refreshToken, profile, done) {
 
-        // Asynchronous
         process.nextTick(function() {
 
             // Check if the user is already logged in
@@ -171,7 +166,7 @@ module.exports = function(passport) {
 
                     if (user) {
 
-                        // If there is a user id already but no token (user was linked at one point and then removed)
+                        // If there is already a userID but no token (user was linked at one point and then removed)
                         if (!user.google.token) {
                             user.google.token = token;
                             user.google.name  = profile.displayName;
@@ -230,18 +225,14 @@ module.exports = function(passport) {
     // FACEBOOK -----------------------------------------------------------------------------------------------------------------------------
 
     passport.use(new FacebookStrategy({
-
-        // pull in our app id and secret from our auth.js file
         clientID        : configAuth.facebookAuth.clientID,
         clientSecret    : configAuth.facebookAuth.clientSecret,
         callbackURL     : configAuth.facebookAuth.callbackURL,
-        passReqToCallback : true // Allows us to pass in the req from our route (lets us check if a user is logged in or not)
-
+        passReqToCallback : true
     },
     // Facebook will send back the token and profile
     function(req, token, refreshToken, profile, done) {
 
-        // Asynchronous
         process.nextTick(function() {
 
             // Check if the user is already logged
@@ -269,11 +260,11 @@ module.exports = function(passport) {
                             });
                         }
 
-                        return done(null, user); // user found, return that user
+                        return done(null, user); // User found, return that user
                     } 
                     else {
 
-                        // No user found with that facebook id, create him/her
+                        // No user found with that facebookID, create him/her
                         var newUser            = new User();
 
                         newUser.facebook.id    = profile.id;                    
