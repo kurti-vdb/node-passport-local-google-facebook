@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>geoip-db.com - login</title>
+    <meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="css/toast.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    
+	
+	<style>
+    
+    </style>
+
+</head>
+<body>
+
+    
+    <% if (message.length != 0) { %>
+        <div class="toast-container toast-pos-right toast-pos-top" id="toaster">
+            <div class="toast" >
+                <a href="#" class="close-toast">&#10006;</a>
+                <b>Message: </b> <%= message[0] %>
+            </div>
+        </div>
+    <% } %>
+    
+    
+    <div class="signup">
+        <span> <img src="img/geoip-db-logo-white.png" width="154" height="72" id="logo"></span>
+        <span class="h1">Log in</span>
+        <form action="/login" method="post" class="form">  
+            <div class="form-group">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" class="form-control" placeholder="Email" name="email" required>
+                <div id="email-suggestion" class="suggestion">Did you mean <a id="suggested-email"><span class="address"></span>@<span class="domain"></span></a>?</div>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" class="form-control" placeholder="Password" name="password" required>
+                <div class="reveal-password">
+                    <svg class="icon">
+                        <use xlink:href="#reveal-icon"></use>
+                    </svg>
+                </div>
+                <div id="password-suggestion" class="suggestion"></div>
+            </div>
+            <button class="btn form-submit" type="submit">Log in</button>
+            
+            <br>
+            <br>
+            
+            <a href="/auth/google">
+                <button type="button" class="google-button btn-white">
+                    <span class="google-button__icon">
+                        <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg"><path d="M125.9 10.2c40.2-13.9 85.3-13.6 125.3 1.1 22.2 8.2 42.5 21 59.9 37.1-5.8 6.3-12.1 12.2-18.1 18.3l-34.2 34.2c-11.3-10.8-25.1-19-40.1-23.6-17.6-5.3-36.6-6.1-54.6-2.2-21 4.5-40.5 15.5-55.6 30.9-12.2 12.3-21.4 27.5-27 43.9-20.3-15.8-40.6-31.5-61-47.3 21.5-43 60.1-76.9 105.4-92.4z" id="Shape" fill="#EA4335"/><path d="M20.6 102.4c20.3 15.8 40.6 31.5 61 47.3-8 23.3-8 49.2 0 72.4-20.3 15.8-40.6 31.6-60.9 47.3C1.9 232.7-3.8 189.6 4.4 149.2c3.3-16.2 8.7-32 16.2-46.8z" id="Shape" fill="#FBBC05"/><path d="M361.7 151.1c5.8 32.7 4.5 66.8-4.7 98.8-8.5 29.3-24.6 56.5-47.1 77.2l-59.1-45.9c19.5-13.1 33.3-34.3 37.2-57.5H186.6c.1-24.2.1-48.4.1-72.6h175z" id="Shape" fill="#4285F4"/><path d="M81.4 222.2c7.8 22.9 22.8 43.2 42.6 57.1 12.4 8.7 26.6 14.9 41.4 17.9 14.6 3 29.7 2.6 44.4.1 14.6-2.6 28.7-7.9 41-16.2l59.1 45.9c-21.3 19.7-48 33.1-76.2 39.6-31.2 7.1-64.2 7.3-95.2-1-24.6-6.5-47.7-18.2-67.6-34.1-20.9-16.6-38.3-38-50.4-62 20.3-15.7 40.6-31.5 60.9-47.3z" fill="#34A853"/></svg>
+                    </span>
+                    <span class="google-button__text">Log in with Google</span>
+                </button>
+            </a>
+            <br>
+            <a href="/auth/facebook">
+                <button type="button" class="google-button btn-white">&nbsp;&nbsp; 
+                    <span class="google-button__icon">
+                        <i class="fa fa-facebook-f blue"></i>
+                    </span>
+                    <span class="google-button__text">Log in with Facebook</span>
+                </button>
+            </a>
+            <br>
+          
+            <div class="center smaller">Forgot your password? <a class="gray" href="/recover">Recover</a></div>
+           
+        </form>
+        <br>
+        <div class="center white">Don't have an account? <a class="white" href="/signup">Sign up</a></div>
+          
+    </div>
+    
+      
+    <!-- password reveal icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none">
+        <symbol id="reveal-icon" viewBox="0 0 932.15 932.15">
+            <g>
+                <path d="M466.075,161.525c-205.6,0-382.8,121.2-464.2,296.1c-2.5,5.3-2.5,11.5,0,16.9c81.4,174.899,258.601,296.1,464.2,296.1   s382.8-121.2,464.2-296.1c2.5-5.3,2.5-11.5,0-16.9C848.875,282.725,671.675,161.525,466.075,161.525z M466.075,676.226   c-116.1,0-210.1-94.101-210.1-210.101c0-116.1,94.1-210.1,210.1-210.1c116.1,0,210.1,94.1,210.1,210.1   S582.075,676.226,466.075,676.226z" />
+                <circle cx="466.075" cy="466.025" r="134.5" />
+            </g>
+        </symbol>
+    </svg>
+
+
+    <!-- scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <script>
+        
+        // Show eye-icon for password input when there is text inside
+        $('#signup-password').on('keyup change', function() {
+            var pw = $(this).val();
+            if (pw.length > 0) 
+                $('.reveal-password').show();
+        });
+
+        // Click eye-icon to show password
+        $('#reveal-password').click(function() {
+                
+            $('#reveal-password').toggleClass('active');
+            $('#reveal-password').parents('.form-group').toggleClass('focus');
+
+            var type = ($(this).is('.active')) ? 'text' : 'password';
+            $('#signup-password').attr('type', type);
+        });
+
+
+        // Click close-icon toast
+        $(".close-toast").click(function(e){
+            e.preventDefault();
+            $("#toaster").fadeOut(500);
+            //$(".toast-container").fadeOut(500);
+        });
+
+    </script>
+
+</body>
+</html>
+
+

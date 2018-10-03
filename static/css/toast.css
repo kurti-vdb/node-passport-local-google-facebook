@@ -1,0 +1,122 @@
+html { width: 100vw; }
+
+.toast-container {
+    width: 90%;
+    max-width: 480px;
+    margin: 0 auto;
+}
+  
+[class*="toast-pos-"] {
+    position: absolute;
+    padding: 10px;
+}
+  
+.toast-pos-top {
+    top: 5%;
+}
+  
+.toast-pos-right {
+    right: 0;
+}
+  
+.toast-pos-bottom {
+    bottom: 0;
+}
+  
+.toast-pos-left {
+    left: 0;
+}
+  
+.toast {
+    padding: 20px;
+    margin: 20px 0;
+    background: #eeeeee;
+    color: #333333;
+}
+  
+.close-toast {
+    float: right;
+    text-decoration: none;
+    color: #ffffff;
+    vertical-align: middle;
+}
+  
+.toast {
+    background: rgba(255,255,255,.5);
+    color: #FFFFFF;
+}
+
+
+.severe {
+  -webkit-animation: fadeIn 1s, stay 1s;
+            animation: fadeIn 1s, stay 1s;
+    -webkit-animation-delay: 0s, 7s;
+            animation-delay: 0s, 7s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+}
+.toast-container{
+    -webkit-animation: fadeIn 1s, fadeOut 1s;
+            animation: fadeIn 1s, fadeOut 1s;
+    -webkit-animation-delay: 0s, 7s;
+            animation-delay: 0s, 7s;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+}
+ 
+  @-webkit-keyframes fadeIn {
+    
+    0% {
+      opacity: 0;
+      margin-right: -210px;
+    }
+    100% {
+      opacity: 1;
+      margin-right: 110px;
+    }
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      margin-right: -210px;
+    }
+    100% {
+      opacity: 1;
+      margin-right: 110px;
+    }
+  }
+
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+
+  @-webkit-keyframes stay {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes stay {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }

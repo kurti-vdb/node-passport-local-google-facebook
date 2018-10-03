@@ -1,0 +1,70 @@
+<!-- scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+   $('.collapse-btn').on('click', function(){
+			$(this).children().toggleClass('fa-minus fa-plus');
+		});
+	
+
+		// Change progress-bar color into border-top-color
+		$( ".panel-body" ).each(function( index ) {
+			var color = $(this).parent().css('border-top-color');
+			$(this).find('.progress-bar').css('background-color', color);
+		});
+	
+	
+		// Drag and drop + sortable
+		// Working on tablets and mobile devices?
+		$( function() {
+			$( ".panel-body" ).sortable({
+				connectWith: ".panel-body",
+				start: function( event, ui ) {
+					
+				},
+				receive: function(event, el) {
+					//$(el).find('.progress-bar').css('background-color', $(el).find('.panel-yellow').css('background-color'));
+					var node = $(el.item[0].offsetParent.children[0]);
+					var color = $(node[0]).css('border-top-color');
+					
+					$(el.item).find('.progress-bar').css('background-color', color);
+				}
+			});
+		});
+	
+		
+		
+		/*** Side menu ***/
+
+		$("#menu-toggle").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled");
+		});
+		 $("#menu-toggle-2").click(function(e) {
+			e.preventDefault();
+			$("#wrapper").toggleClass("toggled-2");
+			$('#menu ul').hide();
+		});
+ 
+		function initMenu() {
+		  $('#menu ul').hide();
+		  $('#menu ul').children('.current').parent().show();
+		  //$('#menu ul:first').show();
+		  $('#menu li a').click(
+			function() {
+			  var checkElement = $(this).next();
+			  if((checkElement.is('ul')) && (checkElement.is(':visible'))) {
+				return false;
+				}
+			  if((checkElement.is('ul')) && (!checkElement.is(':visible'))) {
+				$('#menu ul:visible').slideUp('normal');
+				checkElement.slideDown('normal');
+				return false;
+				}
+			  }
+			);
+		}
+
+		initMenu();
+</script>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>geoip-db.com - Reset password</title>
+    <meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="css/signup.css">
+    <link rel="stylesheet" href="css/toast.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    
+	<style>
+    
+    </style>
+
+</head>
+<body>
+
+    <% if (message != '') { %>
+        <div class="toast-container toast-pos-right toast-pos-top" id="toaster">
+            <div class="toast" >
+                <a href="#" class="close-toast">&#10006;</a>
+                <b>Message: </b> <%= message %>
+            </div>
+        </div>
+    <% } %>	
+
+    <div class="signup">
+        <span> <img src="img/geoip-db-logo-white.png" width="154" height="72" id="logo"></span>
+        <span class="h1">Reset</span>
+        <form action="/reset" method="post" class="form">  
+            <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" class="form-control" placeholder="New password" name="password" required>
+                    <div class="reveal-password">
+                        <svg class="icon">
+                            <use xlink:href="#reveal-icon"></use>
+                        </svg>
+                    </div>
+                    <div id="password-suggestion" class="suggestion"></div>
+                </div>
+                <button class="btn form-submit" type="submit">Update my password</button>
+            <br>
+        </form>
+        <br>
+        
+    </div>
+    
+    <!-- scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <script>
+        $(".close-toast").click(function(e){
+            e.preventDefault();
+            $(".toast-container").fadeOut(500);
+        });
+    </script>
+
+</body>
+</html>
+
+
